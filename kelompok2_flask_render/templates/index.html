@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator Bilangan Ganjil | Kelompok 2</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main class="container">
+<header class="header">
+<div class="logo">∑</div>
+<section class="group-info" aria-label="Identitas kelompok">
+<span class="group-badge">KELOMPOK 2</span>
+<p class="group-label">ANGGOTA KELOMPOK</p>
+<div class="members">
+<p><span>01</span> Muhammad Ikhsan Zaqi <small>352511046</small></p>
+<p><span>02</span> Roby Komarudin <small>352511020</small></p>
+<p><span>03</span> Risweananda Islami O N <small>352510884</small></p>
+</div>
+</section>
+<p class="eyebrow">ALAT BANTU MATEMATIKA</p>
+<h1>Kalkulator Bilangan Ganjil</h1>
+<p class="subtitle">Temukan bilangan ganjil berurutan dalam rentang angka yang kamu tentukan.</p>
+</header>
+<section class="panel">
+<form method="POST">
+<div class="form-grid">
+<label><span>Angka awal</span><input type="number" name="awal" placeholder="Contoh: 1" value="{{ awal }}" required></label>
+<label><span>Angka akhir</span><input type="number" name="akhir" placeholder="Contoh: 20" value="{{ akhir }}" required></label>
+</div>
+<button type="submit">Hitung bilangan ganjil <span>→</span></button>
+</form>
+{% if error %}<div class="alert">{{ error }}</div>{% endif %}
+{% if hasil is not none %}
+<div class="results">
+<div class="result-heading"><div><p class="eyebrow">HASIL PERHITUNGAN</p><h2>Bilangan ganjil ditemukan</h2></div><span class="count">{{ hasil.jumlah }} angka</span></div>
+{% if hasil.bilangan %}<div class="number-list">{% for angka in hasil.bilangan %}<span class="number">{{ angka }}</span>{% endfor %}</div>
+{% else %}<p class="empty">Tidak ada bilangan ganjil dalam rentang tersebut.</p>{% endif %}
+<div class="summary">
+<div class="summary-card"><span>Jumlah bilangan</span><strong>{{ hasil.jumlah }}</strong></div>
+<div class="summary-card"><span>Total penjumlahan</span><strong>{{ hasil.total }}</strong></div>
+</div>
+</div>
+{% endif %}
+</section>
+<footer>Dibuat dengan Python Flask · HTML · CSS</footer>
+</main>
+</body>
+</html>
